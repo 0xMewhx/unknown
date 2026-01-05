@@ -8,34 +8,37 @@
 </head>
 <body>
 
-    <div id="background-layer"></div>
-
-    <div class="main-content">
-        <h1 class="glitch">WHY ARE YOU DOING HERE?</h1>
-        <h2 class="sub-text">ЧТО ТЫ ТУТ ДЕЛАЕШЬ?</h2>
+    <div class="center-box">
+        <h1 class="title">WHY ARE YOU DOING HERE?</h1>
+        <h2 class="subtitle">ЧТО ТЫ ТУТ ДЕЛАЕШЬ?</h2>
     </div>
 
     <script>
-        // Скрипт для генерации случайных символов на фоне
-        const bgLayer = document.getElementById('background-layer');
-        const symbols = ['01', '10', '1010', '1101', '001', '11', '0xmew']; // Набор символов
-        const elementCount = 50; // Количество элементов на фоне (можно менять)
+        const symbols = ['01', '10', '1010', '1101', '0xmew', '001', '0xmew']; 
+        
+        function createSymbol() {
+            const el = document.createElement('div');
+            el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            el.classList.add('bg-symbol');
 
-        for (let i = 0; i < elementCount; i++) {
-            const span = document.createElement('span');
-            span.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            // Рандомная позиция
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.top = Math.random() * 100 + 'vh';
             
-            // Случайная позиция
-            span.style.left = Math.random() * 100 + 'vw';
-            span.style.top = Math.random() * 100 + 'vh';
-            
-            // Случайный размер и прозрачность для эффекта "глубины"
-            const size = Math.random() * 1.5 + 0.5; // от 0.5rem до 2rem
-            span.style.fontSize = size + 'rem';
-            span.style.opacity = Math.random() * 0.3; // Слабая прозрачность
-            
-            bgLayer.appendChild(span);
+            // Рандомный размер шрифта (от мелкого до среднего)
+            el.style.fontSize = (Math.random() * 1.5 + 0.8) + 'rem';
+
+            document.body.appendChild(el);
+
+            // Удаляем элемент после того, как анимация закончится (4 секунды)
+            setTimeout(() => {
+                el.remove();
+            }, 4000);
         }
+
+        // Запускаем создание символов каждые 400мс (редко)
+        setInterval(createSymbol, 400); 
     </script>
+
 </body>
 </html>
