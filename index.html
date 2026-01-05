@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0xmew - Access Denied</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="background-layer"></div>
+
+    <div class="main-content">
+        <h1 class="glitch">WHY ARE YOU DOING HERE?</h1>
+        <h2 class="sub-text">ЧТО ТЫ ТУТ ДЕЛАЕШЬ?</h2>
+    </div>
+
+    <script>
+        // Скрипт для генерации случайных символов на фоне
+        const bgLayer = document.getElementById('background-layer');
+        const symbols = ['01', '10', '1010', '1101', '001', '11', '0xmew']; // Набор символов
+        const elementCount = 50; // Количество элементов на фоне (можно менять)
+
+        for (let i = 0; i < elementCount; i++) {
+            const span = document.createElement('span');
+            span.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            // Случайная позиция
+            span.style.left = Math.random() * 100 + 'vw';
+            span.style.top = Math.random() * 100 + 'vh';
+            
+            // Случайный размер и прозрачность для эффекта "глубины"
+            const size = Math.random() * 1.5 + 0.5; // от 0.5rem до 2rem
+            span.style.fontSize = size + 'rem';
+            span.style.opacity = Math.random() * 0.3; // Слабая прозрачность
+            
+            bgLayer.appendChild(span);
+        }
+    </script>
+</body>
+</html>
