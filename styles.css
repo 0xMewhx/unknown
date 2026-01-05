@@ -1,62 +1,64 @@
-/* Сброс стилей */
-body, html {
+body {
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000000; /* Черный фон */
-    overflow: hidden; /* Чтобы не было полос прокрутки */
-    font-family: 'Courier New', Courier, monospace; /* Шрифт как в терминале */
-}
-
-/* Слой с цифрами на фоне */
-#background-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none; /* Чтобы фон не мешал кликам */
-}
-
-#background-layer span {
-    position: absolute;
-    color: #444; /* Темно-серый цвет для фона, чтобы не отвлекал */
-    user-select: none;
-}
-
-/* Центральный блок */
-.main-content {
-    position: relative;
-    z-index: 1;
+    background-color: #000;
+    height: 100vh;
+    overflow: hidden; /* Скрываем скролл */
+    font-family: 'Courier New', Courier, monospace;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+}
+
+/* Центральный блок с текстом */
+.center-box {
     text-align: center;
+    z-index: 10; /* Текст всегда поверх фона */
+    position: relative;
 }
 
-/* Стиль английского текста */
-h1 {
-    color: #00ff41; /* Ядерно-зеленый (можно заменить на фиолетовый #bf00ff) */
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    text-shadow: 0 0 10px rgba(0, 255, 65, 0.5); /* Неоновое свечение */
-    letter-spacing: 2px;
+.title {
+    color: #4af626; /* Тот самый "хакерский" зеленый */
+    /* Если хочешь фиолетовый, раскомментируй строку ниже: */
+    /* color: #9d00ff; */
+    
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(74, 246, 38, 0.4);
 }
 
-/* Стиль русского текста */
-h2 {
-    color: #a3a3a3; /* Сероватый */
-    font-size: 1.5rem;
+.subtitle {
+    color: #666; /* Сероватый, тусклый */
+    font-size: 1.2rem;
     font-weight: normal;
-    opacity: 0.8;
 }
 
-/* Адаптив для телефонов */
-@media (max-width: 600px) {
-    h1 { font-size: 1.5rem; }
-    h2 { font-size: 1rem; }
+/* Стиль для "проскакивающих" символов */
+.bg-symbol {
+    position: absolute;
+    color: #222; /* Очень темный серый, чтобы еле было видно */
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+    animation: flash 4s linear forwards; /* Анимация на 4 секунды */
+    z-index: 1; /* Позади текста */
+}
+
+/* Анимация появления и исчезновения */
+@keyframes flash {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    20% {
+        opacity: 0.5; /* Появился (не слишком ярко) */
+        color: #333;
+    }
+    80% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0; /* Исчез */
+        transform: translateY(-20px); /* Немного всплыл вверх */
+    }
 }
